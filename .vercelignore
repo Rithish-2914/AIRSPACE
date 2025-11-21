@@ -1,0 +1,12 @@
+node_modules
+.git
+.env
+.local
+*.log
+.replit
+.upm
+.config
+.cache
+.breakpoints
+.vscode
+.idea

@@ -136,3 +136,46 @@ Preferred communication style: Simple, everyday language.
 - **@replit/vite-plugin-runtime-error-modal**: Error overlay for Replit environment
 - **@replit/vite-plugin-cartographer**: Replit-specific development tooling
 - **tsx**: TypeScript execution for development server
+
+## Deployment Options
+
+### Replit Deployment
+The application runs natively on Replit with full backend functionality including:
+- Complete Express.js server with all API endpoints
+- PostgreSQL database integration via Drizzle ORM
+- OpenAI API integration for AI features
+- WebSocket support for real-time features
+- Session management and authentication
+
+### Vercel Deployment
+The project is configured for serverless deployment to Vercel:
+
+**Configuration Files**:
+- `vercel.json` - Vercel deployment configuration with URL rewrites
+- `api/index.js` - Serverless function wrapper for Express API routes
+- `.vercelignore` - Files excluded from deployment
+
+**Deployment Features**:
+- Frontend: Full React application with all client-side features (hand tracking, 3D workspace, UI)
+- Backend: Simplified serverless API endpoints in `api/index.js`
+- Build: Vite builds frontend to `dist/public` directory
+- API Routes: All routes prefixed with `/api` and routed to serverless functions
+
+**Limitations on Vercel**:
+- AI features require full OpenAI implementation (simplified in serverless setup)
+- Scene persistence uses browser local storage instead of database by default
+- Function timeout: 10 seconds (Hobby), 60 seconds (Pro)
+- Stateless serverless functions (no persistent connections)
+
+**Environment Variables for Vercel**:
+- `OPENAI_API_KEY` - OpenAI API key (optional)
+- `DATABASE_URL` - PostgreSQL connection string (optional)
+- `NODE_ENV` - Set to production (auto-configured)
+
+**Quick Deploy**:
+1. Push code to GitHub repository
+2. Import project to Vercel at [vercel.com/new](https://vercel.com/new)
+3. Deploy (auto-configured via `vercel.json`)
+4. Add environment variables in Vercel dashboard if needed
+
+See `README-VERCEL.md` and `DEPLOY.md` for detailed deployment instructions.
