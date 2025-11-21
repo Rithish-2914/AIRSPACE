@@ -1,0 +1,241 @@
+Build a complete web-based mixed-reality interface called AIRSPACE.
+It turns the webcam into a hand-tracking controller like a holographic Iron-Man style OS.
+Implement everything modular, clean, and fully functional.
+
+1. Core System
+
+Use MediaPipe Hands OR TensorFlow.js Hands.
+
+Track hand landmarks in real time.
+
+Recognize gestures:
+
+Point
+
+Pinch (click/select)
+
+Fist (grab/drag)
+
+Open palm (menu)
+
+Swipe left/right/up/down
+
+Two-finger rotate
+
+Convert index finger position into a smooth floating cursor.
+
+Support depth detection (hand distance = zoom in/out).
+
+Build modular gesture detection logic in its own JS file.
+
+2. AIRSPACE UI Theme
+
+Futuristic hologram/cyberpunk design
+
+Transparent panels
+
+Neon edges
+
+Soft glows
+
+Smooth fade/slide animations
+
+3D-ish depth effects
+
+Floating toolbar + app dock
+
+Use separate CSS file for styling (ui.css).
+
+3. Air Builder Mode (3D Creation Mode)
+
+User should be able to build anything in the air using gestures.
+
+Include features:
+
+Create blocks, cubes, spheres, rods, panels
+
+Move, rotate, scale using gestures
+
+Magnetic snap between blocks
+
+Depth push/pull based on hand distance
+
+Draw shapes → auto convert to objects
+
+Merge objects by touching them
+
+Duplicate object with a sideways pinch-swipe
+
+Delete with a downward swipe
+
+Physics toggle (enable gravity & collisions using cannon.js or similar)
+
+Everything must be implemented in builder.js.
+
+4. Idea Studio Mode (Mind Mapping / Concept Building)
+
+A space to build ideas visually.
+
+Implement:
+
+Text bubbles
+
+Arrows
+
+Flowchart nodes
+
+Lines that connect automatically
+
+Ability to reposition nodes using gestures
+
+Export mind map as PNG, SVG, or PDF
+
+AI button to expand ideas automatically
+
+5. App Dock (Gesture-Controlled App Launcher)
+
+Create a floating holographic dock with icons for:
+
+Notes
+
+Calculator
+
+Sketch Pad
+
+File Viewer
+
+Music App
+
+AI Chat Panel
+
+Mini Browser (iframe or simulated browser)
+
+App Interactions:
+
+Hover pointer → glow highlight
+
+Pinch → open app
+
+Fist + move → drag window
+
+Swipe down → close app
+
+Two-open-palms → open full app menu
+
+Hand distance → resize window
+
+All apps open as floating neon panels.
+
+6. Gestures Inside Apps
+
+Notes App
+
+Pinch to place cursor
+
+Write/draw using finger tracking
+
+Sketch Pad
+
+Finger = brush
+
+Pinch = toggle draw mode
+
+Calculator
+
+Pinch numbers
+
+Pinch = press button
+
+Music App
+
+Pinch = play/pause
+
+Swipe left/right = next/previous
+
+File Viewer
+
+Flick left/right = browse
+
+Pinch = open file
+
+Mini Browser
+
+Pinch = focus search bar
+
+Finger scroll pages
+
+AI Panel
+
+Flick up = summon AI assistant
+
+Provide suggestions/improvements to user’s design
+
+7. AI Integration
+
+Include an AI panel where:
+
+User can ask questions
+
+AI can analyze the current structure
+
+AI can improve designs, explain ideas, or generate new ones
+
+AI can name blocks, auto-arrange workspace, or convert sketches to refined shapes
+
+8. Project Structure (Important)
+
+Use clean file structure:
+
+index.html
+
+main.js (initialization, rendering)
+
+gestures.js (gesture recognition & mapping)
+
+builder.js (3D building tools)
+
+apps folder: notes.js, calculator.js, sketch.js, browser.js, files.js, music.js, aiPanel.js
+
+physics.js (cannon.js integration)
+
+ui.css (hologram styling)
+
+Everything should be modular and well-commented.
+
+9. Performance Requirements
+
+Must run smoothly in-browser
+
+Use requestAnimationFrame for rendering
+
+Optimize webcam input
+
+Avoid blocking main thread
+
+Graceful fallback if camera is weak
+
+10. Final Output
+
+Deliver a FULL working prototype where I can:
+
+Move cursor using my hand
+
+Open apps with gestures
+
+Build 3D structures
+
+Draw in the air
+
+Create flowcharts
+
+Activate physics
+
+Use AI
+
+Resize/move panels
+
+Interact with a floating multi-app OS
+
+Feel like Iron Man controlling holograms with bare hands
+
+Everything must work together in one consistent system.
