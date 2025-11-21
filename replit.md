@@ -31,7 +31,7 @@ Preferred communication style: Simple, everyday language.
 - Processes hand landmarks in real-time
 - Translates gestures into UI interactions via `GestureDetector` class
 - Renders floating cursor based on index finger position
-- **IMPORTANT**: MediaPipe packages (`@mediapipe/hands`, `@mediapipe/camera_utils`) MUST be imported using namespace imports (e.g., `import * as mpHands from '@mediapipe/hands'`) rather than named imports for production build compatibility with Vercel and other deployment platforms
+- **IMPORTANT**: MediaPipe packages (`@mediapipe/hands`, `@mediapipe/camera_utils`) MUST be imported using **named imports** (e.g., `import { Hands, Results } from '@mediapipe/hands'`) rather than namespace imports for production build compatibility with Vercel and other deployment platforms. The CDN locateFile URL should include a pinned version number to avoid cache issues: `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/${file}`
 
 **3D Rendering**: Three.js for the Air Builder app, enabling creation and manipulation of 3D objects (cubes, spheres, cylinders, cones, torus) in a WebGL scene.
 

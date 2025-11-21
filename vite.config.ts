@@ -28,9 +28,24 @@ export default defineConfig({
   },
   root: path.resolve(import.meta.dirname, "client"),
   base: "/",
+  optimizeDeps: {
+    include: [
+      "@mediapipe/hands",
+      "@mediapipe/camera_utils",
+      "@mediapipe/drawing_utils",
+    ],
+    esbuildOptions: {
+      target: "es2020",
+    },
+  },
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    target: "es2020",
+    commonjsOptions: {
+      include: [/node_modules/],
+      transformMixedEsModules: true,
+    },
   },
   server: {
     fs: {

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import * as mpHands from "@mediapipe/hands";
-import * as camUtils from "@mediapipe/camera_utils";
+import { Hands, Results } from "@mediapipe/hands";
+import { Camera } from "@mediapipe/camera_utils";
 import { GestureDetector } from "@/lib/gestures";
 import type { Gesture } from "@shared/schema";
 
@@ -24,8 +24,8 @@ export function useHandTracking(): UseHandTrackingReturn {
   const [error, setError] = useState<string | null>(null);
   
   const gestureDetectorRef = useRef(new GestureDetector());
-  const handsRef = useRef<mpHands.Hands | null>(null);
-  const cameraRef = useRef<camUtils.Camera | null>(null);
+  const handsRef = useRef<Hands | null>(null);
+  const cameraRef = useRef<Camera | null>(null);
 
   useEffect(() => {
     if (!videoRef.current || !canvasRef.current) return;
@@ -38,9 +38,9 @@ export function useHandTracking(): UseHandTrackingReturn {
     canvasElement.height = 720;
 
     // Initialize MediaPipe Hands
-    const hands = new mpHands.Hands({
+    const hands = new Hands({
       locateFile: (file: string) => {
-        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/${file}`;
       },
     });
 
@@ -51,7 +51,7 @@ export function useHandTracking(): UseHandTrackingReturn {
       minTrackingConfidence: 0.5,
     });
 
-    hands.onResults((results: mpHands.Results) => {
+    hands.onResults((results: Results) => {
       if (!canvasElement) return;
 
       const canvasCtx = canvasElement.getContext("2d");
@@ -148,7 +148,7 @@ export function useHandTracking(): UseHandTrackingReturn {
         
         videoElement.onloadedmetadata = () => {
           videoElement.play().then(() => {
-            const camera = new camUtils.Camera(videoElement, {
+            const camera = new Camera(videoElement, {
               onFrame: async () => {
                 if (handsRef.current && videoElement && videoElement.readyState === 4) {
                   try {
