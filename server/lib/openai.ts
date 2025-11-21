@@ -1,11 +1,17 @@
 import OpenAI from "openai";
 
 // the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
-if (!process.env.OPENAI_API_KEY) {
-  console.warn("WARNING: OPENAI_API_KEY is not set. AI features will not work.");
-}
+let openai: OpenAI | null = null;
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+function getOpenAIClient(): OpenAI {
+  if (!openai) {
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error("OPENAI_API_KEY is not set. Please configure your API key to use AI features.");
+    }
+    openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  }
+  return openai;
+}
 
 export async function getChatCompletion(
   message: string,
@@ -42,7 +48,8 @@ Be concise, creative, and helpful. Use a slightly futuristic tone but remain cle
       }
     }
 
-    const response = await openai.chat.completions.create({
+    const client = getOpenAIClient();
+    const response = await client.chat.completions.create({
       model: "gpt-5",
       messages: [
         { role: "system", content: systemPrompt },
@@ -75,7 +82,8 @@ Provide:
 
 Keep it concise and actionable.`;
 
-    const response = await openai.chat.completions.create({
+    const client = getOpenAIClient();
+    const response = await client.chat.completions.create({
       model: "gpt-5",
       messages: [
         { role: "user", content: prompt },
