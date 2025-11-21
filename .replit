@@ -15,6 +15,10 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
+localPort = 33101
+externalPort = 3000
+
+[[ports]]
 localPort = 34475
 externalPort = 3001
 
@@ -31,10 +35,10 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Start application"
+args = "Start Game"
 
 [[workflows.workflow]]
-name = "Start application"
+name = "Start Game"
 author = "agent"
 
 [[workflows.workflow.tasks]]
