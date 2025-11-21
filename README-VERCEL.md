@@ -2,6 +2,19 @@
 
 This guide explains how to deploy the AIRSPACE holographic interface application to Vercel.
 
+## ⚠️ White Screen Issue - FIXED!
+
+If you encountered a blank white screen after deployment, this has been fixed in the latest version. The issue was:
+- Missing SPA routing configuration
+- Build command building unnecessary backend code
+
+**Solution applied:**
+- Updated `vercel.json` with proper SPA rewrites
+- Build command now only runs `vite build`
+- Added `base: "/"` to `vite.config.ts`
+
+See [VERCEL-FIX.md](./VERCEL-FIX.md) for details.
+
 ## Prerequisites
 
 - A Vercel account (sign up at [vercel.com](https://vercel.com))
