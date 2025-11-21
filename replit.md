@@ -179,3 +179,23 @@ The project is configured for serverless deployment to Vercel:
 4. Add environment variables in Vercel dashboard if needed
 
 See `README-VERCEL.md` and `DEPLOY.md` for detailed deployment instructions.
+
+## Documentation
+
+Comprehensive documentation is provided for users and developers:
+
+### User Guides
+- **README.md** - Complete guide to AIRSPACE features, installation, and usage
+- **QUICK-START.md** - 2-minute quick start guide for new users
+- **GESTURE-REFERENCE.md** - Visual reference card for all hand gestures
+- **TROUBLESHOOTING.md** - Solutions for common issues
+
+### Deployment Guides
+- **DEPLOY.md** - Quick 3-step deployment to Vercel
+- **README-VERCEL.md** - Detailed Vercel deployment documentation
+- **VERCEL-SETUP-COMPLETE.md** - Vercel configuration checklist
+
+### Technical Documentation
+- **replit.md** (this file) - System architecture and technical details
+- Code comments throughout source files
+- Inline documentation in TypeScript definitions
