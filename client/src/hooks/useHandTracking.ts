@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Hands, Results } from "@mediapipe/hands";
-import { Camera } from "@mediapipe/camera_utils";
+import * as mpHands from "@mediapipe/hands";
+import * as camUtils from "@mediapipe/camera_utils";
 import { GestureDetector } from "@/lib/gestures";
 import type { Gesture } from "@shared/schema";
 
@@ -24,8 +24,8 @@ export function useHandTracking(): UseHandTrackingReturn {
   const [error, setError] = useState<string | null>(null);
   
   const gestureDetectorRef = useRef(new GestureDetector());
-  const handsRef = useRef<Hands | null>(null);
-  const cameraRef = useRef<Camera | null>(null);
+  const handsRef = useRef<mpHands.Hands | null>(null);
+  const cameraRef = useRef<camUtils.Camera | null>(null);
 
   useEffect(() => {
     if (!videoRef.current || !canvasRef.current) return;
@@ -38,8 +38,8 @@ export function useHandTracking(): UseHandTrackingReturn {
     canvasElement.height = 720;
 
     // Initialize MediaPipe Hands
-    const hands = new Hands({
-      locateFile: (file) => {
+    const hands = new mpHands.Hands({
+      locateFile: (file: string) => {
         return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
       },
     });
@@ -51,7 +51,7 @@ export function useHandTracking(): UseHandTrackingReturn {
       minTrackingConfidence: 0.5,
     });
 
-    hands.onResults((results: Results) => {
+    hands.onResults((results: mpHands.Results) => {
       if (!canvasElement) return;
 
       const canvasCtx = canvasElement.getContext("2d");
@@ -63,7 +63,7 @@ export function useHandTracking(): UseHandTrackingReturn {
 
       // Draw hand landmarks
       if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
-        const handsData = results.multiHandLandmarks.map((landmarks, idx) => ({
+        const handsData = results.multiHandLandmarks.map((landmarks: any, idx: number) => ({
           landmarks,
           handedness: results.multiHandedness?.[idx]?.label || 'Unknown',
         }));
@@ -148,7 +148,7 @@ export function useHandTracking(): UseHandTrackingReturn {
         
         videoElement.onloadedmetadata = () => {
           videoElement.play().then(() => {
-            const camera = new Camera(videoElement, {
+            const camera = new camUtils.Camera(videoElement, {
               onFrame: async () => {
                 if (handsRef.current && videoElement && videoElement.readyState === 4) {
                   try {
